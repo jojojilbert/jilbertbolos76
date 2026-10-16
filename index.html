@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Math Web App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>🧮 Smart Math Web App</h1>
+      <p class="tagline">Aplikasi matematika sederhana — luas, keliling, analisis data, faktorial, dan quiz</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" role="tablist" aria-label="Main tabs">
+      <button class="tab active" data-tab="tab-calc">📐 Luas & Keliling</button>
+      <button class="tab" data-tab="tab-kategori">📊 Kategori Nilai</button>
+      <button class="tab" data-tab="tab-analisis">📈 Analisis Nilai</button>
+      <button class="tab" data-tab="tab-faktorial">🔢 Faktorial</button>
+      <button class="tab" data-tab="tab-quiz">📝 Quiz</button>
+    </nav>
+
+    <!-- TAB: Luas & Keliling -->
+    <section id="tab-calc" class="tab-panel active" role="tabpanel">
+      <h2>Pilih jenis perhitungan</h2>
+      <p>Pilih apakah ingin menghitung <strong>luas</strong> atau <strong>keliling</strong>.</p>
+
+      <div class="card">
+        <div class="row">
+          <label>Jenis Perhitungan</label>
+          <div class="inline-group">
+            <label><input type="radio" name="jenis" value="Hitung Luas" checked> Hitung Luas</label>
+            <label><input type="radio" name="jenis" value="Hitung Keliling"> Hitung Keliling</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="pilihan-bangun">Pilih Bangun</label>
+          <select id="pilihan-bangun">
+            <option>Persegi</option>
+            <option>Persegi Panjang</option>
+            <option>Segitiga</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label id="label-angka1" for="angka1">Sisi</label>
+          <input id="angka1" type="number" step="any" placeholder="Masukkan angka" />
+        </div>
+
+        <div class="row" id="row-angka2" style="display:none;">
+          <label id="label-angka2" for="angka2">Input 2</label>
+          <input id="angka2" type="number" step="any" placeholder="Masukkan angka" />
+        </div>
+
+        <div class="row" id="row-angka3" style="display:none;">
+          <label id="label-angka3" for="angka3">Input 3</label>
+          <input id="angka3" type="number" step="any" placeholder="Masukkan angka" />
+        </div>
+
+        <div class="row buttons">
+          <button id="btn-hitung" class="btn primary">🧮 Hitung</button>
+          <button id="btn-reset-calc" class="btn ghost">Reset</button>
+        </div>
+
+        <div class="row">
+          <label>Hasil Perhitungan</label>
+          <textarea id="hasil-perhitungan" readonly rows="3" class="output"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Kategori Nilai -->
+    <section id="tab-kategori" class="tab-panel" role="tabpanel" hidden>
+      <div class="card">
+        <div class="row">
+          <label for="input-nilai">Masukkan Nilai</label>
+          <input id="input-nilai" type="number" step="any" placeholder="Contoh: 85" />
+        </div>
+        <div class="row buttons">
+          <button id="btn-kategori" class="btn primary">Cek Kategori</button>
+          <button id="btn-reset-kategori" class="btn ghost">Reset</button>
+        </div>
+        <div class="row">
+          <label>Kategori</label>
+          <input id="hasil-kategori" class="output" readonly />
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Analisis Nilai -->
+    <section id="tab-analisis" class="tab-panel" role="tabpanel" hidden>
+      <div class="card">
+        <p>Masukkan beberapa nilai dengan tanda koma. Contoh: 70, 80, 90, 75, 85</p>
+        <div class="row">
+          <label for="data-nilai">Data Nilai</label>
+          <textarea id="data-nilai" rows="3" placeholder="70, 80, 90"></textarea>
+        </div>
+        <div class="row buttons">
+          <button id="btn-analisis" class="btn primary">Analisis Data</button>
+          <button id="btn-reset-analisis" class="btn ghost">Reset</button>
+        </div>
+        <div class="row">
+          <label>Hasil Analisis</label>
+          <textarea id="hasil-analisis" readonly rows="8" class="output"></textarea>
+        </div>
+
+        <hr />
+
+        <h3>🔎 Pencarian Nilai</h3>
+        <div class="row">
+          <label for="target-nilai">Nilai yang Dicari</label>
+          <input id="target-nilai" type="number" step="any" placeholder="Contoh: 85" />
+        </div>
+        <div class="row buttons">
+          <button id="btn-cari" class="btn primary">Cari Nilai</button>
+        </div>
+        <div class="row">
+          <label>Hasil Pencarian</label>
+          <textarea id="hasil-pencarian" readonly rows="4" class="output"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Faktorial -->
+    <section id="tab-faktorial" class="tab-panel" role="tabpanel" hidden>
+      <div class="card">
+        <div class="row">
+          <label for="input-faktorial">Masukkan Bilangan</label>
+          <input id="input-faktorial" type="number" step="any" placeholder="Contoh: 5" />
+        </div>
+        <div class="row buttons">
+          <button id="btn-faktorial" class="btn primary">Hitung Faktorial</button>
+          <button id="btn-reset-faktorial" class="btn ghost">Reset</button>
+        </div>
+        <div class="row">
+          <label>Hasil</label>
+          <input id="hasil-faktorial" class="output" readonly />
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Quiz -->
+    <section id="tab-quiz" class="tab-panel" role="tabpanel" hidden>
+      <div class="card quiz-card">
+        <h2>📝 Quiz Smart Math</h2>
+        <p><strong>Setiap jawaban benar mendapatkan 20 poin.</strong> Tekan <em>Periksa Jawaban</em> sebelum melanjutkan.</p>
+
+        <div class="row">
+          <div id="nomor-soal" class="muted">### Soal 1 dari 5</div>
+        </div>
+
+        <div class="row">
+          <div id="pertanyaan" class="question">Pertanyaan akan muncul di sini</div>
+        </div>
+
+        <div class="row">
+          <div id="pilihan-jawaban" class="choices"></div>
+        </div>
+
+        <div class="row buttons">
+          <button id="btn-periksa" class="btn primary">✅ Periksa Jawaban</button>
+          <button id="btn-berikutnya" class="btn" disabled>➡️ Soal Berikutnya</button>
+          <button id="btn-mulai-ulang" class="btn ghost" style="display:none;">🔄 Mulai Kembali</button>
+        </div>
+
+        <div class="row">
+          <label>Hasil</label>
+          <textarea id="hasil-quiz" readonly rows="4" class="output"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <footer class="muted center p-2">
+      Dibuat berdasarkan aplikasi Gradio asli. Siap di-hosting di GitHub Pages.
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
